@@ -2,7 +2,7 @@
 
 """API性能对比测试工具
 
-这个程序用于并发测试阿里云、火山引擎、腾讯云、硅基流动和OpenRouter五个平台的API性能，并生成对比报告。
+这个程序用于并发测试阿里云、火山引擎、腾讯云、硅基流动、OpenRouter和DeepSeek官方API六个平台的API性能，并生成对比报告。
 
 功能特点：
 - 支持多平台API并发测试
@@ -219,7 +219,7 @@ async def save_results_to_file(table_content, metrics_data=None, platforms=None)
             f.write('             API性能测试结果报告                 \n')
             f.write('=================================================\n\n')
             f.write(f'测试时间: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
-            f.write(f'测试平台: 阿里云、火山引擎、腾讯云、硅基流动、OpenRouter\n\n')
+            f.write(f'测试平台: 阿里云、火山引擎、腾讯云、硅基流动、OpenRouter和DeepSeek官方\n\n')
             f.write('测试指标对比表格:\n')
             f.write(table_content)
             
@@ -269,7 +269,7 @@ async def main():
     DEBUG_MODE = False
     
     print("===== API性能对比测试工具 =====")
-    print("开始性能测试，将并发测试5个平台的API性能...\n")
+    print("开始性能测试，将并发测试6个平台的API性能...\n")
     
     # 定义测试脚本和对应的平台名称
     tests = [
@@ -277,7 +277,8 @@ async def main():
         ('huoshanyinqing.py', '火山引擎'),
         ('tencent_test.py', '腾讯云'),
         ('siliconflow_test.py', '硅基流动'),
-        ('openrout.py', 'OpenRouter')
+        ('openrout.py', 'OpenRouter'),
+        ('deepseek_test.py', 'DeepSeek官方')
     ]
     
     # 并发运行所有测试
@@ -303,7 +304,7 @@ async def main():
         print(f"  - 总Token: {metrics.get('总Token')}个")
     
     # 准备表格数据
-    platforms = ['阿里云', '火山引擎', '腾讯云', '硅基流动', 'OpenRouter']
+    platforms = ['阿里云', '火山引擎', '腾讯云', '硅基流动', 'OpenRouter', 'DeepSeek官方']
     headers = ['指标'] + platforms
     rows = [
         ['网络延迟(秒)'] + [metrics_data[p].get('网络延迟', 0) for p in platforms],
@@ -344,7 +345,7 @@ async def main():
     # 保存结果到文件
     await save_results_to_file(table_content, metrics_data, platforms)
     
-    print("\n测试完成！五个平台的性能指标统计标准已统一。")
+    print("\n测试完成！六个平台的性能指标统计标准已统一。")
 
 if __name__ == '__main__':
     asyncio.run(main())
