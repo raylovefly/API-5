@@ -1,0 +1,27 @@
+# 本地环境变量配置文件，包含API密钥
+.env
+
+# 测试结果文件
+test_results_*.txt
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# 日志文件
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE文件
+.idea/
+.vscode/
+*.swp
